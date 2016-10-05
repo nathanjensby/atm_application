@@ -5,6 +5,8 @@ $(document).ready(function(){
   //On click of the withdrawChecking button
   $("#withdrawChecking").on('click', checkingWithdrawal);
 
+  $("#depositSavings").on('click', savingsDeposit)
+
 })
     //Checking account deposit function
 function checkingDeposit() {
@@ -36,6 +38,12 @@ function checkingWithdrawal() {
 
 }
 
+function savingsDeposit() {
+  var amt = +$('#amountSavings').val();
+  var prevBalance = +$('#savingsBalance span').text();
+  $('#savingsBalance span').text(amt + prevBalance);
+  $('#amountSavings').val('');
+}
 
 
 
