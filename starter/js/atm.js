@@ -1,23 +1,46 @@
 //Begin with the document ready function
+$(document).ready(function(){
+  //On click of the depositChecking button
+  $("#depositChecking").on("click", checkingDeposit);
+  //On click of the withdrawChecking button
+  $("#withdrawChecking").on('click', checkingWithdrawal);
 
+})
     //Checking account deposit function
+function checkingDeposit() {
+  //Get value from the amountChecking input field
+    var amt = +$('#amountChecking').val();
+    //Take that value and add it to the existing value in the checkingBalance div
+    var prevBalance = +$('#checkingBalance span').text();
+    $('#checkingBalance span').text(amt + prevBalance);
+    $('#amountChecking').val('');
 
-      //On click of the depositChecking button
+}
 
-        //Get value from the amountChecking input field
 
-        //Take that value and add it to the existing value in the checkingBalance div
 
     //Checking account withdrawl funtion
+function checkingWithdrawal() {
+  //Get value from the amountChecking input field
+    var amt = +$('#amountChecking').val();
+    var prevBalance = +$('#checkingBalance span').text();
+    // If that value is greater than the value in the account ignore that action
+    // In other words if this would put the account into a negative balance do not allow it      console.log("insufficient funds");
+    if (amt > +$('#checkingBalance span').text()) {
+      console.log("insufficient funds");
+      //Else subtract that value from the current amount in the checking account
+    } else {
+      $('#checkingBalance span').text(prevBalance - amt);
+    }
+    $('#amountChecking').val('');
 
-      //On click of the withdrawChecking button
+}
 
-        //Get value from the amountChecking input field
 
-        // If that value is greater than the value in the account ignore that action
-        // In other words if this would put the account into a negative balance do not allow it
 
-        //Else subtract that value from the current amount in the checking account
+
+
+
 
     //Savings account deposit function
 
