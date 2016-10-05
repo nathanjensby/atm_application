@@ -24,18 +24,26 @@ function checkingDeposit() {
 
 
     //Checking account withdrawl funtion
-function checkingWithdrawal() {
+function checkingWithdrawal(x) {
   //Get value from the amountChecking input field
     var amt = +$('#amountChecking').val();
     var prevBalance = +$('#checkingBalance span').text();
+    var savBal = +$('#savingsBalance span').text();
     // If that value is greater than the value in the account ignore that action
     // In other words if this would put the account into a negative balance do not allow it      console.log("insufficient funds");
-    if (amt > +$('#checkingBalance span').text()) {
-      console.log("insufficient funds");
-      //Else subtract that value from the current amount in the checking account
-    } else {
+    if (amt <= prevBalance) {
       $('#checkingBalance span').text(prevBalance - amt);
+
+            //Else subtract that value from the current amount in the checking account
+    } else if (amt <= prevBalance + savBal){
+      $('#checkingBalance span').text('0');
+      var newAmt = (prevBalance + savBal) - amt;
+      $('#savingsBalance span').text(newAmt);
+
+    } else {
+      console.log('insufficient funds');
     }
+
     $('#amountChecking').val('');
 
 }
@@ -50,17 +58,25 @@ function savingsDeposit() {
 function savingsWithdrawal() {
   var amt = +$('#amountSavings').val();
   var prevBalance = +$('#savingsBalance span').text();
+  var cheBal = +$('#checkingBalance span').text();
   // If that value is greater than the value in the account ignore that action
   // In other words if this would put the account into a negative balance do not allow it      console.log("insufficient funds");
-  if (amt > +$('#savingsBalance span').text()) {
-    console.log("insufficient funds");
-    //Else subtract that value from the current amount in the savings account
-  } else {
+  if (amt <= prevBalance) {
     $('#savingsBalance span').text(prevBalance - amt);
-  }
-  $('#amountSavings').val('');
 
+          //Else subtract that value from the current amount in the checking account
+  } else if (amt <= prevBalance + cheBal){
+    $('#savingsBalance span').text('0');
+    var newAmt = (prevBalance + cheBal) - amt;
+    $('#checkingBalance span').text(newAmt);
+
+  } else {
+    console.log('insufficient funds');
+  }
+
+  $('#amountSavings').val('');
 }
+
 
 
 
