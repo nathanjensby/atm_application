@@ -5,7 +5,9 @@ $(document).ready(function(){
   //On click of the withdrawChecking button
   $("#withdrawChecking").on('click', checkingWithdrawal);
 
-  $("#depositSavings").on('click', savingsDeposit)
+  $("#depositSavings").on('click', savingsDeposit);
+
+  $("#withdrawSavings").on('click', savingsWithdrawal);
 
 })
     //Checking account deposit function
@@ -45,7 +47,20 @@ function savingsDeposit() {
   $('#amountSavings').val('');
 }
 
+function savingsWithdrawal() {
+  var amt = +$('#amountSavings').val();
+  var prevBalance = +$('#savingsBalance span').text();
+  // If that value is greater than the value in the account ignore that action
+  // In other words if this would put the account into a negative balance do not allow it      console.log("insufficient funds");
+  if (amt > +$('#savingsBalance span').text()) {
+    console.log("insufficient funds");
+    //Else subtract that value from the current amount in the savings account
+  } else {
+    $('#savingsBalance span').text(prevBalance - amt);
+  }
+  $('#amountSavings').val('');
 
+}
 
 
 
